@@ -8,7 +8,7 @@ Table usuarios as U {
   postagens int [ref: > P.id]
   seguidores int [ref: > U.id]
   seguindo int [ref: < U.id]
-  interesses varchar [ref: < I.interesse]
+  interesses varchar [ref: - IU.interesses]
 }
 
 Table postagens as P {
@@ -28,6 +28,12 @@ Table hashtags_posts as HP {
   id int [pk, increment]
   hashtags varchar [ref: > H.hashtag]
   postagens int [ref: > P.id]
+}
+
+Table interesses_usuarios as IU {
+  id int [pk, increment]
+  interesses varchar [ref: < I.interesse]
+  usuarios int [ref: < U.id]
 }
 
 Table interesses as I {
