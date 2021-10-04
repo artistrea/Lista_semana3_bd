@@ -1,0 +1,51 @@
+
+Table professores as P {
+  id int [pk, increment] 
+  nome_completo varchar [not null]
+  cpf varchar [not null]
+  rg varchar [not null]
+  sexo varchar [ref: < SX.sexo]
+  email varchar [not null]
+  data_de_nascimento varchar [not null]
+  endereco varchar [not null]
+  linguagens varchar [ref: > LP.linguagens]
+}
+
+Table alunos as A {
+  id int [pk, increment] 
+  nome_completo varchar [not null]
+  cpf varchar [not null]
+  rg varchar [not null]
+  data_de_nascimento varchar [not null]
+  endereco varchar [not null]
+  cidade_de_residencia varchar [ref: > C.nome_da_cidade]
+  estado_de_residencia varchar [ref: > C.estado]
+  professor varchar [ref: > P.nome_completo]
+}
+
+Table cidades_estados as C {
+  id int [pk, increment]
+  nome_da_cidade varchar
+  estado varchar [ref: > E.nome_do_estado]
+}
+
+Table estados as E {
+  id int [pk, increment]
+  nome_do_estado varchar [not null]
+}
+
+Table linguagens_do_professor as LP {
+  id int [pk , increment]
+  id_professor varchar [ref: < P.id]
+  linguagens varchar [ref: < L.nome_da_linguagem]
+}
+
+Table linguagens as L {
+  id int [pk , increment]
+  nome_da_linguagem varchar [not null]
+}
+
+Table sexo as SX {
+  id int [pk, increment]
+  sexo varchar [not null]
+}
