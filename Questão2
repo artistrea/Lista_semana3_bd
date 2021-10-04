@@ -16,7 +16,7 @@ Table postagens as P {
   descricao varchar [not null]
   imagem int [not null]
   hashtags varchar [ref: - HP.hashtags]
-  postado_em timestamp [not null]
+  postado_em timestamp [default: `now()`]
   username int [ref: - U.id]
 }
 
