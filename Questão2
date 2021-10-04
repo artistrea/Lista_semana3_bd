@@ -1,0 +1,36 @@
+Table usuarios as U {
+  id int [pk, increment] 
+  username varchar [not null]
+  senha varchar [not null]
+  cpf varchar [not null]
+  email varchar [not null]
+  endereco varchar [not null]
+  postagens int [ref: > P.id]
+  seguidores int [ref: > U.id]
+  seguindo int [ref: < U.id]
+  interesses varchar [ref: < I.interesse]
+}
+
+Table postagens as P {
+  id int [pk, increment] 
+  descricao varchar [not null]
+  imagem int [not null]
+  hashtags varchar [ref: - HP.hashtags]
+  username int [ref: - U.id]
+}
+
+Table hashtags as H {
+  id int [pk, increment] 
+  hashtag varchar [not null]
+}
+
+Table hashtags_posts as HP {
+  id int [pk, increment]
+  hashtags varchar [ref: > H.hashtag]
+  postagens int [ref: > P.id]
+}
+
+Table interesses as I {
+  id int [pk, increment]
+  interesse varchar [not null]
+}
